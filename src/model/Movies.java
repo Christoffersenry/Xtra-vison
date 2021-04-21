@@ -21,4 +21,35 @@ public class Movies {
     public Movies(){
         
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getRunTime() {
+        return runTime;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public int getQuantities() {
+        return quantities;
+    }
+
+    public boolean isAvailability() {
+        return availability;
+    }
+    
+    
+    
 }
