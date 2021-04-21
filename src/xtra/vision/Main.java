@@ -6,21 +6,15 @@
 package xtra.vision;
 
 import java.util.Scanner;
-import model.Card;
 
 /**
  *
  * @author Andressa Gomes
  */
-public class XtraVision {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        
+public class Main {
+    Scanner sc;
+    
+    public Main(){
         
     }
-    
 }

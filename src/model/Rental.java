@@ -20,7 +20,10 @@ public class Rental {
     public Rental(){
         
     }
-    
+
+    public int getDiscCode() {
+        return discCode;
+    }
     
     
 }
