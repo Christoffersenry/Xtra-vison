@@ -5,17 +5,32 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Andressa Gomes
  */
 public class Cart {
-    protected String promoCode;
-    protected double promoDiscount;
+    
     protected double dayCharge;
     protected double totalCharge;
+    protected ArrayList<Movie> movies;
     
     public Cart(){
         
     }
+    
+    public double calcTotal() {
+        return totalCharge;
+    }
+    
+    public void showCartItems() {
+        
+    }
+    
+    public void removeItem() {
+        
+    }
+    
 }

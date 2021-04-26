@@ -7,8 +7,8 @@ package model;
 
 /**
  *
- * @author Andressa Gomes
+ * @author rcvb8
  */
-public class CreditCard extends Card{
+public enum Genres {
     
 }

@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package xtra.vision;
+
+import java.util.Scanner;
 
 /**
  *
- * @author Andressa Gomes
+ * @author rcvb8
  */
-public class DebitCard extends Card{
+public class CLI_Rylee {
+    
+    Scanner sc = new Scanner(System.in);
     
 }
