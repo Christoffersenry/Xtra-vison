@@ -9,7 +9,8 @@ package model;
  *
  * @author Andressa Gomes
  */
-public class Movies {
+public class Movie {
+    protected int discCode;
     protected String title;
     protected String description;
     protected int runTime;
@@ -18,8 +19,23 @@ public class Movies {
     protected int quantities;
     protected boolean availability;
     
-    public Movies(){
+    public Movie(){
         
+    }
+
+    public Movie(int discCode, String title, String description, int runTime, int rating, String genre) {
+        this.discCode = discCode;
+        this.title = title;
+        this.description = description;
+        this.runTime = runTime;
+        this.rating = rating;
+        this.genre = genre;
+    }
+    
+    
+    
+    public int getDiscCode() {
+        return discCode;
     }
 
     public String getTitle() {
@@ -50,6 +66,16 @@ public class Movies {
         return availability;
     }
     
+    public void showAvailableMovies() {
+        
+    }
     
+    public void showMovieDetails() {
+        
+    }
+    
+    public void addToCart() {
+        
+    }
     
 }

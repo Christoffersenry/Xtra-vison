@@ -9,12 +9,10 @@ import java.util.Scanner;
 
 /**
  *
- * @author Andressa Gomes
+ * @author rcvb8
  */
-public class Main {
-    Scanner sc;
+public class CLI_Dessa {
     
-    public Main(){
-        
-    }
+    Scanner sc = new Scanner(System.in);
+    
 }

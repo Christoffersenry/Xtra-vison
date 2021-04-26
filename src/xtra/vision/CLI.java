@@ -5,20 +5,16 @@
  */
 package xtra.vision;
 
+import java.util.Scanner;
 
 /**
  *
  * @author Andressa Gomes
  */
-public class XtraVision {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        
+public class CLI {
+    Scanner sc;
+    
+    public CLI(){
         
     }
-    
 }
