@@ -53,7 +53,5 @@ public abstract class Card {
         }
         
         return hashCardNum;
-        
-        }
-    
+        } 
 }
