@@ -5,6 +5,8 @@
  */
 package model;
 
+import database.DBConnection;
+
 /**
  *
  * @author Andressa Gomes
@@ -19,6 +21,8 @@ public class Movie {
     protected int quantities;
     protected boolean availability;
     
+    DBConnection db = new DBConnection();
+    
     public Movie(){
         
     }
@@ -30,14 +34,12 @@ public class Movie {
         this.runTime = runTime;
         this.rating = rating;
         this.genre = genre;
-    }
-    
-    
+    }    
     
     public int getDiscCode() {
         return discCode;
     }
-
+    
     public String getTitle() {
         return title;
     }
