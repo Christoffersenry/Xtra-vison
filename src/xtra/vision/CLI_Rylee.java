@@ -15,14 +15,40 @@ import model.Card;
 public class CLI_Rylee {
     
     Scanner sc = new Scanner(System.in);
+    Card c;
+    public String custCard;
  
     public static void main(String[] args) {
        
-        new Card();
-        
+        new CLI_Rylee();
         
         
         
     }
+    
+    public CLI_Rylee() {
+        this.c = new Card(this);
+        
+        getCustomerCard();
+        
+    }
+    
+    
+    public String getCustomerCard() {
+        System.out.println("Please insert your card.");
+        System.out.println("*For Test Purpose - Press ENTER for new customer to generate a new card or type in existing card.");
+       boolean validCard = false;
+        do {
+            try {
+            custCard = sc.nextLine();
+                System.out.println(custCard);
+                validCard = c.validateCard(custCard);
+            } catch (Exception e) {
+                System.out.println(e);   
+            }
+       } while (!validCard);
+        return custCard;
+    }
+    
     
 }

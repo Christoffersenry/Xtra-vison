@@ -9,16 +9,19 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+import xtra.vision.CLI_Rylee;
 
 /**
  *
  * @author Andressa Gomes
  */
 public class Card {
-    protected long cardNum;
+    
+    CLI_Rylee cli;
+    protected String cardNum;
 //    protected long newCustCardNum;                  //Don't think we need, but just in case
     
     private Random rand = new Random();
@@ -27,8 +30,9 @@ public class Card {
     public boolean boolNC = false;
     private String hashCardNum;
 
-    public Card() {
-        newCustCardGen();
+    public Card(CLI_Rylee cli) {
+        this.cli = cli;
+        
     }
 
     @Override
@@ -37,9 +41,11 @@ public class Card {
     }
     
 
-    public long getCardNum() {
+    public String getCardNum() {
+        cardNum = cli.getCustomerCard();
         return cardNum;
     }
+    
     
     public String hashCardNum() {
         
@@ -63,19 +69,44 @@ public class Card {
         return hashCardNum;
         }
     
-    public boolean validateCard() {
-        return boolV;
+    
+    
+    public boolean validateCard(String custCard) {
+        if (isNewCustomer(custCard)) {                                                     // Creates new card details to be put into database.
+            newCustCardGen();
+            System.out.println("Card validated.");
+            boolV = true;
+    } else if (isNum(custCard) && custCard.length() == 16) {                    // Validate input matches prefixed card length and only contains numbers.               
+            System.out.println("Card validated.");   
+            boolV = true;
+    } else {
+            System.out.println("Card entered is not valid. Please re-enter:");
+    }
+        return boolV;                                                                             
     }
     
-    public boolean isNewCustomer() {
+    
+    
+    //     VALIDATE STRING ONLY CONTAINS NUMBERS
+     public boolean isNum(String num){
+        return Pattern.matches("[0-9]+", num);
+    }
+     
+    
+    public boolean isNewCustomer(String custCard) {
+         if (custCard.isEmpty() || custCard.equals("")) {
+            boolNC = true;
+         }
         return boolNC;
     }
+    
     
 //    public long newCustCardGen() {            // NOT NEEEDED IF GLOBAL VARIABLE ABOVE ISN'T NEEDED
 //        
 //        
 //        return newCustCardNum;
 //    }
+    
     
     public String newCustCardGen () {  
         
@@ -93,9 +124,10 @@ public class Card {
         int checkDigit = this.getCheckDigit(builder.toString());                // Get check digit from card number so far
         builder.append(checkDigit);                                                     // Add the check digit to the end of the card number to get the full valid card number
         String newCustCardNum = builder.toString();
-//        System.out.println(newCustCardNum);
+        System.out.println(newCustCardNum);
         return newCustCardNum;                                                          // Returns a randomly generated 15 digit card number (2 digit from BankFormat + 13 random digits)
     }
+    
     
     private int getCheckDigit(String number) {                                  // Method to create the check digit at the end of card number
         int sum = 0;
@@ -113,8 +145,8 @@ public class Card {
         
         int mod = sum % 10;                                                             // Get remainder
         int diff = 10 - mod;                                                                // Get the difference it would take to make this number a value of 10 or the sum a multiplier of 10
-        return diff;                                                                            // The diff is your check digit
         
+        return diff;                                                                            // The diff is your check digit        
     }
     
     public class InnerEmail {
