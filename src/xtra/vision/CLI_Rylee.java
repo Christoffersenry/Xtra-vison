@@ -6,6 +6,7 @@
 package xtra.vision;
 
 import java.util.Scanner;
+import model.Card;
 
 /**
  *
@@ -14,5 +15,14 @@ import java.util.Scanner;
 public class CLI_Rylee {
     
     Scanner sc = new Scanner(System.in);
+ 
+    public static void main(String[] args) {
+       
+        new Card();
+        
+        
+        
+        
+    }
     
 }
