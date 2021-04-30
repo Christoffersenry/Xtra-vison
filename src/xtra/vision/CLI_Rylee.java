@@ -41,8 +41,13 @@ public class CLI_Rylee {
         do {
             try {
             custCard = sc.nextLine();
-                System.out.println(custCard);
+                if (c.isNewCustomer(custCard)) {
+                   custCard = c.newCustCardGen();
+                   validCard = c.validateCard(custCard);
+                } else {
                 validCard = c.validateCard(custCard);
+                }
+                
             } catch (Exception e) {
                 System.out.println(e);   
             }

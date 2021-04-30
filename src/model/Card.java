@@ -5,6 +5,7 @@
  */
 package model;
 
+import database.DBConnection;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,6 +22,7 @@ import xtra.vision.CLI_Rylee;
 public class Card {
     
     CLI_Rylee cli;
+    DBConnection db;
     protected String cardNum;
 //    protected long newCustCardNum;                  //Don't think we need, but just in case
     
@@ -32,6 +34,7 @@ public class Card {
 
     public Card(CLI_Rylee cli) {
         this.cli = cli;
+        this.db = new DBConnection(this);
         
     }
 
@@ -72,12 +75,8 @@ public class Card {
     
     
     public boolean validateCard(String custCard) {
-        if (isNewCustomer(custCard)) {                                                     // Creates new card details to be put into database.
-            newCustCardGen();
-            System.out.println("Card validated.");
-            boolV = true;
-    } else if (isNum(custCard) && custCard.length() == 16) {                    // Validate input matches prefixed card length and only contains numbers.               
-            System.out.println("Card validated.");   
+     if (isNum(custCard) && custCard.length() == 16) {                    // Validate input matches prefixed card length and only contains numbers.               
+//            System.out.println("Card validated.");   
             boolV = true;
     } else {
             System.out.println("Card entered is not valid. Please re-enter:");
@@ -124,7 +123,13 @@ public class Card {
         int checkDigit = this.getCheckDigit(builder.toString());                // Get check digit from card number so far
         builder.append(checkDigit);                                                     // Add the check digit to the end of the card number to get the full valid card number
         String newCustCardNum = builder.toString();
-        System.out.println(newCustCardNum);
+        
+        if (validateCard(newCustCardNum) == true) {
+            db.insertNewCustCard(newCustCardNum);
+        } else {
+            System.out.println("There is something wrong with the Card Generator...");
+        }
+//        System.out.println(newCustCardNum);
         return newCustCardNum;                                                          // Returns a randomly generated 15 digit card number (2 digit from BankFormat + 13 random digits)
     }
     
