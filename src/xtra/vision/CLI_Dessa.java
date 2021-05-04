@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class CLI_Dessa {
     Scanner sc = new Scanner(System.in);
-    DBConnection db = new DBConnection();
+//    DBConnection db = new DBConnection();
     
     int question1;
      int movieNum;
@@ -35,12 +35,12 @@ public class CLI_Dessa {
     
     public void movieSelection(){
         if(question1 == 1){
-            db.OpenConnection();
+//            db.openConnection();
             System.out.println("");
             System.out.println("Movie Selection:");
             System.out.println("********************************");
             System.out.println("");
-            db.getMovieSelection();
+//            db.getMovieSelection();
             
             System.out.println("");
             System.out.println("Press 1 for What The Wealth \n"

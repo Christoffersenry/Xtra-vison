@@ -21,7 +21,7 @@ public class Movie {
     protected int quantities;
     protected boolean availability;
     
-    DBConnection db = new DBConnection();
+//    DBConnection db = new DBConnection();
     
     public Movie(){
         
