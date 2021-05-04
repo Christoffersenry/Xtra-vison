@@ -24,7 +24,6 @@ public class Card {
     CLI_Rylee cli;
     DBConnection db;
     protected String cardNum;
-//    protected long newCustCardNum;                  //Don't think we need, but just in case
     
     private Random rand = new Random();
     
@@ -50,10 +49,10 @@ public class Card {
     }
     
     
-    public String hashCardNum() {
+    public String hashCardNum(String custCard) {
         
         try{
-        String cardNum = getCardNum() + "hashthisshit";
+        String cardNum = custCard + "hashthisshit";
         
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(cardNum.getBytes());
@@ -68,14 +67,13 @@ public class Card {
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Card.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return hashCardNum;
         }
     
     
     
     public boolean validateCard(String custCard) {
-     if (isNum(custCard) && custCard.length() == 16) {                    // Validate input matches prefixed card length and only contains numbers.               
+     if (isNum(custCard) && custCard.length() == 16 && !db.newCustCheck(hashCardNum(custCard))) {                    // Validate input matches prefixed card length and only contains numbers.               
 //            System.out.println("Card validated.");   
             boolV = true;
     } else {
@@ -100,13 +98,6 @@ public class Card {
     }
     
     
-//    public long newCustCardGen() {            // NOT NEEEDED IF GLOBAL VARIABLE ABOVE ISN'T NEEDED
-//        
-//        
-//        return newCustCardNum;
-//    }
-    
-    
     public String newCustCardGen () {  
         
         String bankFormat = "70";             // Fake Bank Identification Number to begin all issued CC's
@@ -124,12 +115,9 @@ public class Card {
         builder.append(checkDigit);                                                     // Add the check digit to the end of the card number to get the full valid card number
         String newCustCardNum = builder.toString();
         
-        if (validateCard(newCustCardNum) == true) {
-            db.insertNewCustCard(newCustCardNum);
-        } else {
-            System.out.println("There is something wrong with the Card Generator...");
-        }
-//        System.out.println(newCustCardNum);
+        newCustCardNum = hashCardNum(newCustCardNum);
+        db.insertNewCustCard(newCustCardNum);
+            
         return newCustCardNum;                                                          // Returns a randomly generated 15 digit card number (2 digit from BankFormat + 13 random digits)
     }
     

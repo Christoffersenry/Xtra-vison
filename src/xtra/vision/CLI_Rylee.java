@@ -40,18 +40,18 @@ public class CLI_Rylee {
        boolean validCard = false;
         do {
             try {
-            custCard = sc.nextLine();
-                if (c.isNewCustomer(custCard)) {
-                   custCard = c.newCustCardGen();
-                   validCard = c.validateCard(custCard);
+            custCard = sc.nextLine();                                   // Capture user input
+                if (c.isNewCustomer(custCard)) {                    // Check to see if is a new customer
+                   custCard = c.newCustCardGen();                 // If it is, generate a new card to be used (pretend they already had this) and insert into DB for record
+                   validCard = true;                                        // newly generated card is automatically valid
                 } else {
-                validCard = c.validateCard(custCard);
+                validCard = c.validateCard(custCard);               // validate user's input to make sure it was a proper card number and that it matches with existing one in DB.
                 }
                 
-            } catch (Exception e) {
+            } catch (Exception e) {                                         // Catch any errors that might occur and print message
                 System.out.println(e);   
             }
-       } while (!validCard);
+       } while (!validCard);                                                // Loop to get user input until card input is valid
         return custCard;
     }
     
