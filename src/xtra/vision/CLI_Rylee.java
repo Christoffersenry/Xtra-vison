@@ -65,7 +65,6 @@ public class CLI_Rylee {
        } while (!validCard);                                                // Loop to get user input until card input is valid
         return custCard;
     }
-    
->>>>>>> d91e6834322a2ad2d2d8bd1ff1535faa5338d77c
+
     
 }

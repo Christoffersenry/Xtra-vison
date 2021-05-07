@@ -1,0 +1,22 @@
+[33m1ab9268[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge branch 'master' of https://github.com/Christoffersenry/Xtra-vision into master
+[33m90a2e83[m fixed private.xml issue hopefully...
+[33md91e683[m Merge pull request #6 from Christoffersenry/card-db
+[33me1b3322[m[33m ([m[1;31morigin/card-db[m[33m, [m[1;32mcard-db[m[33m)[m Hashed card numbers and updated Card table in DB
+[33mf404719[m Added insertion of New Card Generator Numbers into DB
+[33m50e324f[m Added validation for card number entered by user
+[33m3dec4b7[m Merge pull request #5 from Christoffersenry/cc-gen
+[33mbdd462f[m[33m ([m[1;32mcc-gen[m[33m)[m created card generator for new customers
+[33mfcf7482[m CLI and DB
+[33m09a7d9e[m Merge pull request #3 from Christoffersenry/create-classes
+[33mee2a088[m updated classes and prepped for branching
+[33m6dc54dd[m test new sub-branch in sub-branch
+[33mb0ecf14[m Merge pull request #2 from Christoffersenry/create-classes
+[33m9ba150f[m changed test-branch to create-classes
+[33mf582c69[m Resolved unmerged conflicts
+[33m81e6c8c[m Added some getter for Movies
+[33m478ce6f[m Final changes
+[33mc153735[m New Classes
+[33m8cc5ba3[m Merge pull request #1 from Christoffersenry/test-branch
+[33m2303f89[m Created test branch
+[33m28d8f24[m tried test for orgin
+[33m5f4ce9d[m Initial commit
