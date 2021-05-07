@@ -20,7 +20,7 @@ import xtra.vision.CLI_Rylee;
  *
  * @author Andressa Gomes
  */
-public class Card {
+public class Card { // It works!
 
 //    protected long newCustCardNum;                  //Don't think we need, but just in case
     CLI_Rylee cli;
