@@ -15,7 +15,7 @@ import model.Card;
 public class CLI_Rylee {
     
     Scanner sc = new Scanner(System.in);
-<<<<<<< HEAD
+
  
     public static void main(String[] args) {
        
@@ -25,7 +25,7 @@ public class CLI_Rylee {
         
         
     }
-=======
+
     Card c;
     public String custCard;
  
