@@ -19,7 +19,7 @@ public class CLI_Rylee {
  
     public static void main(String[] args) {
        
-        new Card();
+       // new Card();
 
          //new CLI_Rylee();
         
