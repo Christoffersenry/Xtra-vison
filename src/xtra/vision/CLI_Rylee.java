@@ -20,8 +20,8 @@ public class CLI_Rylee {
     public static void main(String[] args) {
        
         new Card();
-        
-        
+
+         //new CLI_Rylee();
         
         
     }
@@ -29,13 +29,7 @@ public class CLI_Rylee {
     Card c;
     public String custCard;
  
-    public static void main(String[] args) {
-       
-        new CLI_Rylee();
-        
-        
-        
-    }
+
     
     public CLI_Rylee() {
         this.c = new Card(this);
