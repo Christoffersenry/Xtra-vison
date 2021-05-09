@@ -20,9 +20,8 @@ import xtra.vision.CLI_Rylee;
  *
  * @author Andressa Gomes
  */
-public class Card { // It works!
-
-//    protected long newCustCardNum;                  //Don't think we need, but just in case
+public class Card { 
+    
     CLI_Rylee cli;
     DBConnection db;
     protected String cardNum;
@@ -30,37 +29,28 @@ public class Card { // It works!
     public boolean boolV = false;
     public boolean boolNC = false;
     private String hashCardNum;
+    
 
-    public Card(CLI_Rylee cli) {
-        this.cli = cli;
-        this.db = new DBConnection(this);
+    public Card(CLI_Rylee cli) {                                // Constructor to create instance of the card class from the CLI
+        this.cli = cli;                                                     
+        this.db = new DBConnection(this);                 // a new connection to the database is created from this constructor
 
     }
+    
 
-    @Override
-    public String toString() {
-        return "Card{" + "cardNum=" + cardNum + '}';
-    }
-
-    public String getCardNum() {
-        cardNum = cli.getCustomerCard();
-        return cardNum;
-    }
-
-    public String hashCardNum(String custCard) {
+//  THIS CODE WAS GIVEN BY AMILCAR APONTE IN YEAR 2 - GUI PROGRAMMING HASHING CLASS 
+    public String hashCardNum(String custCard) {                            // Hashes and Salts card numbers for security and privacy
         // ctr + shift + f
         try {
-            String cardNum = custCard + "hashthisshit";
+            String cardNum = custCard + "hashthisshit";                     // Card number is converted to include salting
 
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance("MD5");        // MD5 hashing
             md.update(cardNum.getBytes());
             byte[] digest = md.digest();
+            
+            BigInteger no = new BigInteger(1, digest);                              // Convert byte array into signum representation                        
 
-            // Convert byte array into signum representation
-            BigInteger no = new BigInteger(1, digest);
-
-            // Convert message digest into hex value
-            hashCardNum = no.toString(16);
+            hashCardNum = no.toString(16);                                          // Convert message digest into readable hex value
 
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Card.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,8 +58,8 @@ public class Card { // It works!
         return hashCardNum;
     }
 
-    public boolean validateCard(String custCard) {
-        if (isNum(custCard) && custCard.length() == 16 && !db.newCustCheck(hashCardNum(custCard))) {                    // Validate input matches prefixed card length and only contains numbers.               
+    public boolean validateCard(String custCard) {                       // Validate input matches prefixed card length and only contains numbers and is already in DB. 
+        if (isNum(custCard) && custCard.length() == 16 && !db.newCustCheck(hashCardNum(custCard))) {                                 
 //            System.out.println("Card validated.");   
             boolV = true;
         } else {
@@ -79,12 +69,12 @@ public class Card { // It works!
     }
 
     //     VALIDATE STRING ONLY CONTAINS NUMBERS
-    public boolean isNum(String num) {
+    public boolean isNum(String num) {                                  // Checks user input for card number only contains numbers
         return Pattern.matches("[0-9]+", num);
     }
 
 
-    public boolean isNewCustomer(String custCard) {
+    public boolean isNewCustomer(String custCard) {                 // For test purposes - if no card details are entered = new customer
         if (custCard.isEmpty() || custCard.equals("")) {
             boolNC = true;
         }
@@ -92,7 +82,8 @@ public class Card { // It works!
     }
 
  
-
+// THIS CODE WAS ADAPTED FROM JOSEF GALEA ON GITHUB.COM -- HREF: https://gist.github.com/josefeg/5781824
+// RESEARCH WAS ALSO GATHERED FROM HREF: Href = https://gizmodo.com/how-credit-card-numbers-work-1493331190#:~:text=In%20a%20typical%20sixteen%20digit,last%20digit%2C%20it%20is%20deterministic
     public String newCustCardGen() {
 
         String bankFormat = "70";             // Fake Bank Identification Number to begin all issued CC's
@@ -112,10 +103,13 @@ public class Card { // It works!
         int checkDigit = this.getCheckDigit(builder.toString());                // Get check digit from card number so far
         builder.append(checkDigit);                                                     // Add the check digit to the end of the card number to get the full valid card number
         String newCustCardNum = builder.toString();
+        newCustCardNum = hashCardNum(newCustCardNum);
+        db.insertNewCustCard(newCustCardNum);
 //        System.out.println(newCustCardNum);
         return newCustCardNum;                                                          // Returns a randomly generated 15 digit card number (2 digit from BankFormat + 13 random digits)
     }
 
+    // THIS CODE WAS ADAPTED FROM JOSEF GALEA ON GITHUB.COM -- HREF: https://gist.github.com/josefeg/5781824
     private int getCheckDigit(String number) {                                  // Method to create the check digit at the end of card number
         int sum = 0;
         for (int i = 0; i < number.length(); i++) {                                 // Loop through given card number to perform Luhn algorithm
@@ -132,8 +126,8 @@ public class Card { // It works!
 
         int mod = sum % 10;                                                             // Get remainder
         int diff = 10 - mod;                                                                // Get the difference it would take to make this number a value of 10 or the sum a multiplier of 10
+        
         return diff;                                                                            // The diff is your check digit
-
         }
 
    

@@ -15,21 +15,15 @@ import model.Card;
 public class CLI_Rylee {
     
     Scanner sc = new Scanner(System.in);
-
- 
-    public static void main(String[] args) {
-       
-       // new Card();
-
-         //new CLI_Rylee();
-        
-        
-    }
-
     Card c;
     public String custCard;
  
+public static void main(String[] args) {
 
+         new CLI_Rylee();
+        
+        
+    }
     
     public CLI_Rylee() {
         this.c = new Card(this);
@@ -57,6 +51,7 @@ public class CLI_Rylee {
                 System.out.println(e);   
             }
        } while (!validCard);                                                // Loop to get user input until card input is valid
+        System.out.println("Approved!");
         return custCard;
     }
 
