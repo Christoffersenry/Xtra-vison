@@ -6,6 +6,7 @@
 package model;
 
 import database.DBConnection;
+import xtra.vision.CLI_Dessa;
 
 /**
  *
@@ -21,43 +22,13 @@ public class Movie {
     protected int quantities;
     protected boolean availability;
     
-//    DBConnection db = new DBConnection();
     
-    public Movie(){
-        
-    }
-
-    public Movie(int discCode, String title, String description, int runTime, int rating, String genre) {
-        this.discCode = discCode;
-        this.title = title;
-        this.description = description;
-        this.runTime = runTime;
-        this.rating = rating;
-        this.genre = genre;
-    }    
+    CLI_Dessa cli;
+    DBConnection db;
     
-    public int getDiscCode() {
-        return discCode;
-    }
-    
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getRunTime() {
-        return runTime;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public String getGenre() {
-        return genre;
+    public Movie(CLI_Dessa cli){
+        this.cli = cli;
+        this.db = new DBConnection(this);
     }
 
     public int getQuantities() {
@@ -69,14 +40,14 @@ public class Movie {
     }
     
     public void showAvailableMovies() {
-        
+        db.getMovieSelection();
     }
     
-    public void showMovieDetails() {
-        
+    public void showMovieInfo(int movieNum){
+        db.getMovieInfo(movieNum);
     }
     
-    public void addToCart() {
+    public void addToCart(int movieNum) {
         
     }
     

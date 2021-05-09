@@ -6,12 +6,14 @@
 package database;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import model.Card;
+import model.Movie;
 
 /**
  *
@@ -24,6 +26,7 @@ public class DBConnection {
     private String dbPassword = "2019145";
     
     Card c;
+    Movie m;
     
     private Connection conn;
     private Statement stmt;
@@ -35,6 +38,11 @@ public class DBConnection {
     
     public DBConnection(Card c) {
         this.c = c;
+        openConnection();
+    }
+    
+    public DBConnection(Movie m) {
+        this.m = m;
         openConnection();
     }
     
@@ -62,7 +70,7 @@ public class DBConnection {
     }
     
     public void getMovieSelection(){
-        String query = "SELECT DISTINCT title FROM movie;";                         // String query to get available movie titles from DB
+        String query = "SELECT title FROM movie;";                         // String query to get available movie titles from DB
         
         try{
             rs= stmt.executeQuery(query);                                                      // Result Statement to store results from DB
@@ -70,8 +78,47 @@ public class DBConnection {
             while (rs.next()) {                                                                         // Loop to print results from Result Statement
                 String title = rs.getString(1);
                 System.out.println(title);
-//                System.out.println(rs.getString("title"));
             }            
+            rs.close();
+            
+        }catch (SQLException se) {                                                                      // Catch SQL Exception errors and print out clear message
+            System.out.println("SQL Exception:");
+
+            // Loop through the SQL Exceptions
+            while (se != null) {                                                                            // Loop through the SQL Exceptions
+                System.out.println("State  : " + se.getSQLState());
+                System.out.println("Message: " + se.getMessage());
+                System.out.println("Error  : " + se.getErrorCode());
+
+                se = se.getNextException();
+            }
+        } catch (Exception e) {                                                                         // Catch any other exceptions that might occur
+            System.out.println(e);
+        }
+    }
+    
+    public void getMovieInfo(int movieNum){
+        String query = "SELECT * FROM movie WHERE movie_ID= "+movieNum+ ";";                         // String query to get available movie titles from DB
+        
+        try{
+            rs= stmt.executeQuery(query);                                                      // Result Statement to store results from DB
+            
+            while (rs.next()) { 
+                String title = rs.getString("title");
+                System.out.println("Title: " + title);
+                String desc = rs.getString("description");
+                System.out.println("Description: "+ desc);
+                String genre = rs.getString("genre");
+                System.out.println("Genre: " + genre);
+                Date relDate = rs.getDate("release_date");
+                String relDateYear = relDate.toString().substring(0, 4);
+                System.out.println("Released: "+ relDateYear);
+                int runTime = rs.getInt("runtime");
+                System.out.println("Runtime: "+ runTime+ " minutes");
+                double rating = rs.getDouble("rating");
+                System.out.println("Rating: "+ rating);
+            }     
+            
             rs.close();
             
         }catch (SQLException se) {                                                                      // Catch SQL Exception errors and print out clear message
