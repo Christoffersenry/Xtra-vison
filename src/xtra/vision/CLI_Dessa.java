@@ -60,8 +60,8 @@ public class CLI_Dessa {
     
     public void selectMovie() {
         movieNum = sc.nextInt();
-        System.out.println("");
         m.showMovieInfo(movieNum);
+        System.out.println("");
         System.out.println("Would you like to add to cart?");
         System.out.println("Press y - YES or n - NO");
         String cartAns = sc.next();
