@@ -5,8 +5,8 @@
  */
 package xtra.vision;
 
-import database.DBConnection;
 import java.util.Scanner;
+import model.Movie;
 
 /**
  *
@@ -14,14 +14,18 @@ import java.util.Scanner;
  */
 public class CLI_Dessa {
     Scanner sc = new Scanner(System.in);
-//    DBConnection db = new DBConnection();
-    
+    Movie m;
     int question1;
      int movieNum;
+     
+     public static void main(String[] args) {
+
+         new CLI_Dessa();
+    }
     
     public CLI_Dessa(){
+        this.m = new Movie(this);
         welcomePage();
-        movieSelection();
         
     }
     
@@ -29,58 +33,45 @@ public class CLI_Dessa {
         System.out.println("********************************");
         System.out.println("WELCOME TO XTRA-VISON!");
         System.out.println("Press 1 to RENT or 2 to RETURN");
-        question1 = sc.nextInt();
         System.out.println("********************************");
+        question1 = sc.nextInt();
+        if(question1 == 1){
+            showMovieSelection();
+        } else {
+            System.out.println("Return Service coming soon...");
+        }
+            
     }
     
-    public void movieSelection(){
-        if(question1 == 1){
-//            db.openConnection();
+    public void showMovieSelection(){
+        
             System.out.println("");
             System.out.println("Movie Selection:");
-            System.out.println("********************************");
+            System.out.println("******************************************");
             System.out.println("");
-//            db.getMovieSelection();
-            
+            m.showAvailableMovies();
             System.out.println("");
-            System.out.println("Press 1 for What The Wealth \n"
-                    + "Press 2 for Cowspiracy \n"
-                    + "Press 3 for The Game Changers \n"
-                    + "Press 4 for My Octopus Teacher \n"
-                    + "Press 5 for Seaspiracy \n"
-                    + "Press 6 for Hush \n"
-                    + "Press 7 for Annabelle \n"
-                    + "Press 8 for Cast Away \n"
-                    + "Press 9 for Grown Ups \n"
-                    + "Press 10 for Easy A");}
-        System.out.println("");
-        movieNum = sc.nextInt();
-        System.out.println("");
+            System.out.println("To view movie info, press:");
+            System.out.println("1 - What The Wealth,   2 - Cowspiracy,   3 - The Game Changers,   4 - My Octopus Teacher \n"
+                    + "5 - Seaspiracy,   6 - Hush,   7 - Annabelle,   8 - Cast Away,   9 - Grown Ups,   0 - Easy A");
+            System.out.println("");
+            selectMovie();
     }
     
-    public void showMovieInfo(){
-        if(movieNum == 1){
-            
-        }else if (movieNum == 2){
-            
-        }else if (movieNum == 3){
-            
-        }else if (movieNum == 4){
-            
-        }else if (movieNum == 5){
-            
-        }else if (movieNum == 6){
-            
-        }else if (movieNum == 7){
-            
-        }else if (movieNum == 8){
-            
-        }else if (movieNum == 9){
-            
-        }else if (movieNum == 10){
-            
-        }else{
-            System.out.println("Please try again");
+    public void selectMovie() {
+        movieNum = sc.nextInt();
+        m.showMovieInfo(movieNum);
+        System.out.println("");
+        System.out.println("Would you like to add to cart?");
+        System.out.println("Press y - YES or n - NO");
+        String cartAns = sc.next();
+        if (cartAns.equalsIgnoreCase("y")) {
+            m.addToCart(movieNum);
+        } else if (cartAns.equalsIgnoreCase("n")) {
+            showMovieSelection();
         }
     }
+      
+    
+    
 }
