@@ -5,6 +5,7 @@
  */
 package model;
 
+import controller.MovieCon;
 import database.DBConnection;
 import xtra.vision.CLI_Dessa;
 
@@ -23,11 +24,11 @@ public class Movie {
     protected boolean availability;
     
     
-    CLI_Dessa cli;
+    MovieCon mCon;
     DBConnection db;
     
-    public Movie(CLI_Dessa cli){
-        this.cli = cli;
+    public Movie(MovieCon mCon){
+        this.mCon = mCon;
         this.db = new DBConnection(this);
     }
 
@@ -35,20 +36,22 @@ public class Movie {
         return quantities;
     }
 
-    public boolean isAvailability() {
+    public boolean isAvailable(int movieNum) {
+        availability = db.checkAvailability(movieNum);
         return availability;
     }
     
-    public void showAvailableMovies() {
+    public void getAvailableMovies() {
         db.getMovieSelection();
     }
     
-    public void showMovieInfo(int movieNum){
+    public void getMovieInfo(int movieNum){
         db.getMovieInfo(movieNum);
     }
     
     public void addToCart(int movieNum) {
-        
+        String discCode = db.getDiscCode(movieNum);
+        System.out.println(discCode);
     }
     
 }

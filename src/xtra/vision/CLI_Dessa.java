@@ -5,6 +5,8 @@
  */
 package xtra.vision;
 
+import controller.MovieCon;
+import database.DBConnection;
 import java.util.Scanner;
 import model.Movie;
 
@@ -14,7 +16,7 @@ import model.Movie;
  */
 public class CLI_Dessa {
     Scanner sc = new Scanner(System.in);
-    Movie m;
+    MovieCon mCon;
     int question1;
      int movieNum;
      
@@ -24,7 +26,7 @@ public class CLI_Dessa {
     }
     
     public CLI_Dessa(){
-        this.m = new Movie(this);
+        this.mCon = new MovieCon(this);
         welcomePage();
         
     }
@@ -49,7 +51,7 @@ public class CLI_Dessa {
             System.out.println("Movie Selection:");
             System.out.println("******************************************");
             System.out.println("");
-            m.showAvailableMovies();
+            mCon.getAvailableMovies();
             System.out.println("");
             System.out.println("To view movie info, press:");
             System.out.println("1 - What The Wealth,   2 - Cowspiracy,   3 - The Game Changers,   4 - My Octopus Teacher \n"
@@ -60,13 +62,18 @@ public class CLI_Dessa {
     
     public void selectMovie() {
         movieNum = sc.nextInt();
-        m.showMovieInfo(movieNum);
+        mCon.getMovieInfo(movieNum);
         System.out.println("");
+        promptAddToCart();
+    }
+        
+    public void promptAddToCart() {
         System.out.println("Would you like to add to cart?");
         System.out.println("Press y - YES or n - NO");
         String cartAns = sc.next();
+        
         if (cartAns.equalsIgnoreCase("y")) {
-            m.addToCart(movieNum);
+            mCon.addToCart(movieNum);
         } else if (cartAns.equalsIgnoreCase("n")) {
             showMovieSelection();
         }

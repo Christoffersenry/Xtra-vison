@@ -5,6 +5,7 @@
  */
 package xtra.vision;
 
+import controller.CardCon;
 import java.util.Scanner;
 import model.Card;
 
@@ -15,7 +16,7 @@ import model.Card;
 public class CLI_Rylee {
     
     Scanner sc = new Scanner(System.in);
-    Card c;
+    CardCon cardC;
     public String custCard;
  
 public static void main(String[] args) {
@@ -26,7 +27,7 @@ public static void main(String[] args) {
     }
     
     public CLI_Rylee() {
-        this.c = new Card(this);
+        this.cardC = new CardCon(this);
         
         getCustomerCard();
         
@@ -40,11 +41,11 @@ public static void main(String[] args) {
         do {
             try {
             custCard = sc.nextLine();                                   // Capture user input
-                if (c.isNewCustomer(custCard)) {                    // Check to see if is a new customer
-                   custCard = c.newCustCardGen();                 // If it is, generate a new card to be used (pretend they already had this) and insert into DB for record
+                if (cardC.isNewCustomer(custCard)) {                    // Check to see if is a new customer
+                   custCard = cardC.newCustCardGen();                 // If it is, generate a new card to be used (pretend they already had this) and insert into DB for record
                    validCard = true;                                        // newly generated card is automatically valid
                 } else {
-                validCard = c.validateCard(custCard);               // validate user's input to make sure it was a proper card number and that it matches with existing one in DB.
+                validCard = cardC.validateCard(custCard);               // validate user's input to make sure it was a proper card number and that it matches with existing one in DB.
                 }
                 
             } catch (Exception e) {                                         // Catch any errors that might occur and print message
