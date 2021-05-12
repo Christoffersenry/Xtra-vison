@@ -7,6 +7,7 @@ package xtra.vision;
 
 import controller.MovieCon;
 import database.DBConnection;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import model.Movie;
 
@@ -19,6 +20,8 @@ public class CLI_Dessa {
     MovieCon mCon;
     int question1;
      int movieNum;
+     String cartAns;
+     String promptConShopAns;
      
      public static void main(String[] args) {
 
@@ -36,13 +39,20 @@ public class CLI_Dessa {
         System.out.println("WELCOME TO XTRA-VISON!");
         System.out.println("Press 1 to RENT or 2 to RETURN");
         System.out.println("********************************");
+        boolean boolWP = false;
+        
+        do {
+        try {
         question1 = sc.nextInt();
-        if(question1 == 1){
-            showMovieSelection();
-        } else {
-            System.out.println("Return Service coming soon...");
+        boolWP = true;
+        } catch (InputMismatchException ime) {
+            sc.next();
+            System.out.println("Sorry, the input isn't recognised. Only numbers allowed. Please try again.");
         }
-            
+        } while (!boolWP);
+        
+        mCon.directWelcomePage(question1);  
+          
     }
     
     public void showMovieSelection(){
@@ -61,24 +71,42 @@ public class CLI_Dessa {
     }
     
     public void selectMovie() {
+        boolean boolSM = false;
+        
+        do {
+        try {
         movieNum = sc.nextInt();
+        boolSM = true;
+        } catch (InputMismatchException ime) {
+            sc.next();
+            System.out.println("Sorry, the input isn't recognised. Only numbers allowed. Please try again.");
+        }
+        } while (!boolSM);
+        
         mCon.getMovieInfo(movieNum);
         System.out.println("");
-        promptAddToCart();
     }
         
     public void promptAddToCart() {
         System.out.println("Would you like to add to cart?");
         System.out.println("Press y - YES or n - NO");
-        String cartAns = sc.next();
-        
-        if (cartAns.equalsIgnoreCase("y")) {
-            mCon.addToCart(movieNum);
-        } else if (cartAns.equalsIgnoreCase("n")) {
-            showMovieSelection();
-        }
+        cartAns = sc.next();
+        mCon.decideCart(cartAns);
     }
       
+    public void promptConShopOrCheckout() {
+        System.out.println("");
+        System.out.println("Would you like to continue shopping OR continue to checkout?");
+        System.out.println("Press   1 - Continue Shopping   OR   2 - Checkout");
+              
+        promptConShopAns = sc.next();
+        mCon.decideShopping(promptConShopAns);
+       
+    }
     
+    
+    public int getUserMovieNum() {
+    return movieNum;
+    }
     
 }

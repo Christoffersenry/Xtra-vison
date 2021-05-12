@@ -173,11 +173,10 @@ public class DBConnection {
         String query = "SELECT disc_code FROM rentables WHERE movie_ID= "+movieNum+ ";";                         // String query to get available movie titles from DB
         
         try{
-            rs= stmt.executeQuery(query);                                                      // Result Statement to store results from DB
-            while (rs.next()) {
-               String discCode = rs.getString("disc_code");
-                System.out.println(discCode);
-            }
+            rs= stmt.executeQuery(query);    
+             rs.next();
+             discCode = rs.getString("disc_code");
+             System.out.println(discCode);
             
             rs.close();
             

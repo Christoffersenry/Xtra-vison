@@ -7,6 +7,7 @@ package model;
 
 import controller.MovieCon;
 import database.DBConnection;
+import java.util.ArrayList;
 import xtra.vision.CLI_Dessa;
 
 /**
@@ -21,8 +22,7 @@ public class Movie {
     protected int rating;
     protected String genre;
     protected int quantities;
-    protected boolean availability;
-    
+    protected boolean availability;    
     
     MovieCon mCon;
     DBConnection db;
@@ -49,7 +49,7 @@ public class Movie {
         db.getMovieInfo(movieNum);
     }
     
-    public void addToCart(int movieNum) {
+    public void getDiscCode(int movieNum) {
         String discCode = db.getDiscCode(movieNum);
         System.out.println(discCode);
     }

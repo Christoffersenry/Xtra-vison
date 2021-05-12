@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.util.Scanner;
 import model.Movie;
 import xtra.vision.CLI_Dessa;
 
@@ -16,6 +17,9 @@ public class MovieCon {
     
     Movie m;
     CLI_Dessa cli;
+    Scanner sc = new Scanner(System.in);
+    
+    boolean boolWP;
     
     public MovieCon(CLI_Dessa cli) {
         this.cli = cli;
@@ -23,21 +27,68 @@ public class MovieCon {
                
     }
     
+    
+    public void directWelcomePage(int welcomeChoice) {
+        do {
+        if (welcomeChoice == 1) {
+            cli.showMovieSelection();
+            boolWP = true;
+        } else if (welcomeChoice == 2) {
+            System.out.println("Return Service coming soon...");
+            boolWP = true;
+        } else {
+            System.out.println("Number entered exceeds options. Press   1 - Rent   2 - Return");
+            boolWP = false;
+            welcomeChoice = sc.nextInt();
+        }
+        }while (!boolWP);
+    }
+    
      public void getAvailableMovies() {
         m.getAvailableMovies();
     }
     
     public void getMovieInfo(int movieNum){
-        if (m.isAvailable(movieNum) == false) {
+        if (movieNum < 1 || movieNum > 10) {
+            System.out.println("Input is outside of range. Please choose a number between 1-10.");
+            cli.selectMovie();
+        }
+        else if (m.isAvailable(movieNum) == false) {
             System.out.println("Sorry, this is out of stock. Please choose another:");
             cli.selectMovie();
         } else {
-            m.getMovieInfo(movieNum);           
+            m.getMovieInfo(movieNum);
+            cli.promptAddToCart();
         }
     }
     
     public void addToCart(int movieNum) {
-        m.addToCart(movieNum);
+        m.getDiscCode(movieNum);
+//        cart.addToCard(Movie movie);
     }
+    
+    public void decideCart(String cartAns) {
+        if (cartAns.equalsIgnoreCase("y")) {
+            addToCart(cli.getUserMovieNum()); 
+            cli.promptConShopOrCheckout();
+        } else if (cartAns.equalsIgnoreCase("n")) {
+            cli.showMovieSelection();
+        } else {
+            System.out.println("Input not recognised.");
+            cli.promptAddToCart();
+        }
+    }
+        
+     public void decideShopping(String promptConShopAns) {
+         if(promptConShopAns.equalsIgnoreCase( "1")) {
+            cli.showMovieSelection();
+        } else if (promptConShopAns.equalsIgnoreCase("2")) {
+//            cart.checkout();
+        } else {
+            System.out.println("Sorry, the options are only 1 or 2.");
+            cli.promptConShopOrCheckout();
+        }
+     }
+    
     
 }
