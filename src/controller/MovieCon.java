@@ -6,6 +6,7 @@
 package controller;
 
 import java.util.Scanner;
+import model.Cart;
 import model.Movie;
 import xtra.vision.CLI_Dessa;
 
@@ -16,6 +17,7 @@ import xtra.vision.CLI_Dessa;
 public class MovieCon {
     
     Movie m;
+    Cart c;
     CLI_Dessa cli;
     Scanner sc = new Scanner(System.in);
     
@@ -24,6 +26,7 @@ public class MovieCon {
     public MovieCon(CLI_Dessa cli) {
         this.cli = cli;
         this.m = new Movie(this);
+        this.c = new Cart(this);
                
     }
     
@@ -63,8 +66,10 @@ public class MovieCon {
     }
     
     public void addToCart(int movieNum) {
+        m.getMovieNum();
         m.getDiscCode(movieNum);
-//        cart.addToCard(Movie movie);
+        c.movies.add(m);
+        c.showCartItems();
     }
     
     public void decideCart(String cartAns) {
@@ -83,11 +88,15 @@ public class MovieCon {
          if(promptConShopAns.equalsIgnoreCase( "1")) {
             cli.showMovieSelection();
         } else if (promptConShopAns.equalsIgnoreCase("2")) {
-//            cart.checkout();
+        c.showCartItems();
         } else {
             System.out.println("Sorry, the options are only 1 or 2.");
             cli.promptConShopOrCheckout();
         }
+     }
+     
+     public int getMovieNum() {
+         return cli.getUserMovieNum();          
      }
     
     

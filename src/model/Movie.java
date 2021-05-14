@@ -15,13 +15,15 @@ import xtra.vision.CLI_Dessa;
  * @author Andressa Gomes
  */
 public class Movie {
-    protected int discCode;
-    protected String title;
-    protected String description;
-    protected int runTime;
-    protected int rating;
-    protected String genre;
-    protected int quantities;
+    public String discCode;
+    public int movieNum;
+    public String title;
+    
+//    protected String description;             // DON'T THINK THEY ARE NEEDED FOR MOVIE OBJECT
+//    protected int runTime;
+//    protected int rating;
+//    protected String genre;
+//    protected int quantities;
     protected boolean availability;    
     
     MovieCon mCon;
@@ -30,12 +32,19 @@ public class Movie {
     public Movie(MovieCon mCon){
         this.mCon = mCon;
         this.db = new DBConnection(this);
+        
     }
 
-    public int getQuantities() {
-        return quantities;
-    }
+//    public int getQuantities() {
+//        return quantities;
+//    }
 
+    @Override
+    public String toString() {
+        return "Title: " + title +
+                "\nDisc Code: " +discCode;
+    }
+    
     public boolean isAvailable(int movieNum) {
         availability = db.checkAvailability(movieNum);
         return availability;
@@ -49,9 +58,18 @@ public class Movie {
         db.getMovieInfo(movieNum);
     }
     
-    public void getDiscCode(int movieNum) {
-        String discCode = db.getDiscCode(movieNum);
-        System.out.println(discCode);
+    public String getDiscCode(int movieNum) {
+        db.getDiscCode(movieNum);
+        return discCode;
     }
+
+    public int getMovieNum() {
+        movieNum = mCon.getMovieNum();
+        return movieNum;
+    }
+
+    
+    
+    
     
 }

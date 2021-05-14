@@ -35,6 +35,7 @@ public class DBConnection {
     public boolean boolNCC = true;
     public boolean boolCA;
     public String discCode;
+    public String title;
     
     public String[] movieTitles;
     
@@ -135,8 +136,8 @@ public class DBConnection {
         try{
             rs= stmt.executeQuery(query); 
             while (rs.next()) { 
-                String title = rs.getString("title");
-                System.out.println("Title: " + title);
+                m.title = rs.getString("title");
+                System.out.println("Title: " + m.title);
                 String desc = rs.getString("description");
                 System.out.println("Description: "+ desc);
                 String genre = rs.getString("genre");
@@ -175,8 +176,8 @@ public class DBConnection {
         try{
             rs= stmt.executeQuery(query);    
              rs.next();
-             discCode = rs.getString("disc_code");
-             System.out.println(discCode);
+             m.discCode = rs.getString("disc_code");
+             System.out.println(m.discCode);
             
             rs.close();
             
@@ -194,8 +195,9 @@ public class DBConnection {
         } catch (Exception e) {                                                                         // Catch any other exceptions that might occur
             System.out.println(e);
         }
-        return discCode;
+        return m.discCode;
     }
+    
     
     public void insertNewCustCard(String newCardNum) {
         try {

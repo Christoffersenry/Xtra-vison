@@ -5,6 +5,7 @@
  */
 package model;
 
+import controller.MovieCon;
 import java.util.ArrayList;
 
 /**
@@ -12,13 +13,15 @@ import java.util.ArrayList;
  * @author Andressa Gomes
  */
 public class Cart {
+    MovieCon mCon;
     
-    protected double dayCharge;
-    protected double totalCharge;
-    protected ArrayList<Movie> movies;
+    public double dayCharge;
+    public double totalCharge;
+    public ArrayList<Movie> movies;
     
-    public Cart(){
-        
+    public Cart(MovieCon mCon){
+        this.mCon = mCon;
+        movies = new ArrayList<Movie>();
     }
     
     public double calcTotal() {
@@ -26,7 +29,7 @@ public class Cart {
     }
     
     public void showCartItems() {
-        
+        System.out.println(movies);
     }
     
     public void removeItem() {
