@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xtra.vision;
+package view;
 
 import controller.MovieCon;
 import database.DBConnection;
@@ -15,20 +15,15 @@ import model.Movie;
  *
  * @author rcvb8
  */
-public class CLI_Dessa {
+public class CLI_movie {
     Scanner sc = new Scanner(System.in);
     MovieCon mCon;
     int question1;
      int movieNum;
      String cartAns;
      String promptConShopAns;
-     
-     public static void main(String[] args) {
-
-         new CLI_Dessa();
-    }
     
-    public CLI_Dessa(){
+    public CLI_movie(){
         this.mCon = new MovieCon(this);
         welcomePage();
         
@@ -57,16 +52,13 @@ public class CLI_Dessa {
     
     public void showMovieSelection(){
         
-            System.out.println("");
-            System.out.println("Movie Selection:");
-            System.out.println("******************************************");
-            System.out.println("");
+            System.out.println("\nMovie Selection:");
+            System.out.println("******************************************\n");
             mCon.getAvailableMovies();
             System.out.println("");
             System.out.println("To view movie info, press:");
             System.out.println("1 - What The Wealth,   2 - Cowspiracy,   3 - The Game Changers,   4 - My Octopus Teacher \n"
-                    + "5 - Seaspiracy,   6 - Hush,   7 - Annabelle,   8 - Cast Away,   9 - Grown Ups,   0 - Easy A");
-            System.out.println("");
+                    + "5 - Seaspiracy,   6 - Hush,   7 - Annabelle,   8 - Cast Away,   9 - Grown Ups,   10 - Easy A\n");
             selectMovie();
     }
     
@@ -95,8 +87,7 @@ public class CLI_Dessa {
     }
       
     public void promptConShopOrCheckout() {
-        System.out.println("");
-        System.out.println("Would you like to continue shopping OR continue to checkout?");
+        System.out.println("\nWould you like to continue shopping OR continue to checkout?");
         System.out.println("Press   1 - Continue Shopping   OR   2 - Checkout");
               
         promptConShopAns = sc.next();

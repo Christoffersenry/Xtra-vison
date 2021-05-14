@@ -5,6 +5,7 @@
  */
 package database;
 
+import controller.MovieCon;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -27,6 +28,7 @@ public class DBConnection {
     
     Card c;
     Movie m;
+    MovieCon mCon;
     
     private Connection conn;
     private Statement stmt;
@@ -43,9 +45,14 @@ public class DBConnection {
         this.c = c;
         openConnection();
     }
+//    
+//    public DBConnection(Movie m) {
+//        this.m = m;
+//        openConnection();
+//    }
     
-    public DBConnection(Movie m) {
-        this.m = m;
+    public DBConnection(MovieCon mCon) {
+        this.mCon = mCon;
         openConnection();
     }
     
@@ -136,8 +143,8 @@ public class DBConnection {
         try{
             rs= stmt.executeQuery(query); 
             while (rs.next()) { 
-                m.title = rs.getString("title");
-                System.out.println("Title: " + m.title);
+                String title = rs.getString("title");
+                System.out.println("Title: " + title);
                 String desc = rs.getString("description");
                 System.out.println("Description: "+ desc);
                 String genre = rs.getString("genre");
@@ -176,8 +183,7 @@ public class DBConnection {
         try{
             rs= stmt.executeQuery(query);    
              rs.next();
-             m.discCode = rs.getString("disc_code");
-             System.out.println(m.discCode);
+             discCode = rs.getString("disc_code");
             
             rs.close();
             
@@ -195,7 +201,34 @@ public class DBConnection {
         } catch (Exception e) {                                                                         // Catch any other exceptions that might occur
             System.out.println(e);
         }
-        return m.discCode;
+        return discCode;
+    }
+    
+    public String getTitle(int movieNum) {
+        String query = "SELECT title FROM movie WHERE movie_ID= "+movieNum+ ";";                         // String query to get available movie titles from DB
+        
+        try{
+            rs= stmt.executeQuery(query);    
+             rs.next();
+             title = rs.getString("title");
+            
+            rs.close();
+            
+        }catch (SQLException se) {                                                                      // Catch SQL Exception errors and print out clear message
+            System.out.println("SQL Exception:");
+
+            // Loop through the SQL Exceptions
+            while (se != null) {                                                                            // Loop through the SQL Exceptions
+                System.out.println("State  : " + se.getSQLState());
+                System.out.println("Message: " + se.getMessage());
+                System.out.println("Error  : " + se.getErrorCode());
+
+                se = se.getNextException();
+            }
+        } catch (Exception e) {                                                                         // Catch any other exceptions that might occur
+            System.out.println(e);
+        }
+        return title;
     }
     
     

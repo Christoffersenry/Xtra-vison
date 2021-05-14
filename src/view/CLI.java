@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package view;
+
+import java.util.Scanner;
 
 /**
  *
- * @author rcvb8
+ * @author Andressa Gomes
  */
-public enum Genres {
+public class CLI {
+    Scanner sc;
     
+    public CLI(){
+        
+    }
 }

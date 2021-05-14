@@ -5,6 +5,9 @@
  */
 package xtra.vision;
 
+import view.CLI_movie;
+
+
 
 /**
  *
@@ -17,7 +20,7 @@ public class XtraVision {
      */
     public static void main(String[] args) {
        
-        new CLI_Dessa();
+        new CLI_movie();
         
         
     }

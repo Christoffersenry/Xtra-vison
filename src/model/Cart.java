@@ -15,8 +15,10 @@ import java.util.ArrayList;
 public class Cart {
     MovieCon mCon;
     
-    public double dayCharge;
-    public double totalCharge;
+    private double dayCharge = 2.99;
+    private double totalCharge;
+    private String promoCode = "FREE123";
+    public boolean boolVP;
     public ArrayList<Movie> movies;
     
     public Cart(MovieCon mCon){
@@ -25,15 +27,44 @@ public class Cart {
     }
     
     public double calcTotal() {
+        totalCharge = dayCharge * movies.size();
         return totalCharge;
     }
     
-    public void showCartItems() {
-        System.out.println(movies);
+    public double applyPromo() {
+        totalCharge -= dayCharge;
+        return totalCharge;
     }
     
-    public void removeItem() {
-        
+    public boolean validatePromo(String userPromo) {
+        if (userPromo.equals(promoCode)) {
+            boolVP = true;
+            applyPromo();
+        } else {
+            System.out.println("Promo entered is invalid.");
+        }
+        return boolVP;
+    }
+    
+    public void removeItem(String userRemovalChoice) {
+        movies.remove(userRemovalChoice);
+    }
+    
+    public double getTotal() {
+        return totalCharge;
+    }
+    
+//    public double getDiscount() {
+//        double promoDiscount = 0.00;
+//        return promoDiscount;
+//    }
+    
+    public void removePromo() {
+        totalCharge += dayCharge;
+    }
+    
+    public ArrayList<Movie> getMovies() {
+        return movies;
     }
     
 }

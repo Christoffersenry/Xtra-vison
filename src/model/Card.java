@@ -7,15 +7,6 @@ package model;
 
 import controller.CardCon;
 import database.DBConnection;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Random;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
-import xtra.vision.CLI_Rylee;
 
 /**
  *

@@ -13,14 +13,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import model.Card;
-import xtra.vision.CLI_Rylee;
+import view.CLI_card;
 
 /**
  *
  * @author rcvb8
  */
 public class CardCon {
-    CLI_Rylee cli;
+    CLI_card cli;
     Card c;
     
     private Random rand = new Random();
@@ -28,7 +28,7 @@ public class CardCon {
     public boolean boolNC = false;
     private String hashCardNum;
     
-    public CardCon(CLI_Rylee cli) {
+    public CardCon(CLI_card cli) {
         this.cli = cli;
         this.c = new Card(this);
     }

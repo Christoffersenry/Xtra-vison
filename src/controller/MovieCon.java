@@ -5,10 +5,11 @@
  */
 package controller;
 
+import database.DBConnection;
 import java.util.Scanner;
 import model.Cart;
 import model.Movie;
-import xtra.vision.CLI_Dessa;
+import view.CLI_movie;
 
 /**
  *
@@ -17,14 +18,16 @@ import xtra.vision.CLI_Dessa;
 public class MovieCon {
     
     Movie m;
+    DBConnection db;
     Cart c;
-    CLI_Dessa cli;
+    CLI_movie cli;
     Scanner sc = new Scanner(System.in);
     
     boolean boolWP;
     
-    public MovieCon(CLI_Dessa cli) {
+    public MovieCon(CLI_movie cli) {
         this.cli = cli;
+        this.db = new DBConnection(this);
         this.m = new Movie(this);
         this.c = new Cart(this);
                
@@ -48,7 +51,7 @@ public class MovieCon {
     }
     
      public void getAvailableMovies() {
-        m.getAvailableMovies();
+        db.getMovieSelection();
     }
     
     public void getMovieInfo(int movieNum){
@@ -56,20 +59,22 @@ public class MovieCon {
             System.out.println("Input is outside of range. Please choose a number between 1-10.");
             cli.selectMovie();
         }
-        else if (m.isAvailable(movieNum) == false) {
+        else if (db.checkAvailability(movieNum) == false) {
             System.out.println("Sorry, this is out of stock. Please choose another:");
             cli.selectMovie();
         } else {
-            m.getMovieInfo(movieNum);
+            db.getMovieInfo(movieNum);
             cli.promptAddToCart();
         }
     }
     
     public void addToCart(int movieNum) {
-        m.getMovieNum();
-        m.getDiscCode(movieNum);
+        Movie m = new Movie(this);
+        m.setMovieNum(movieNum);
+        m.setTitle(db.getTitle(movieNum));
+        m.setDiscCode(db.getDiscCode(movieNum));
+        
         c.movies.add(m);
-        c.showCartItems();
     }
     
     public void decideCart(String cartAns) {
@@ -88,7 +93,7 @@ public class MovieCon {
          if(promptConShopAns.equalsIgnoreCase( "1")) {
             cli.showMovieSelection();
         } else if (promptConShopAns.equalsIgnoreCase("2")) {
-        c.showCartItems();
+        new CartCon(this);
         } else {
             System.out.println("Sorry, the options are only 1 or 2.");
             cli.promptConShopOrCheckout();

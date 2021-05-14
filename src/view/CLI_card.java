@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xtra.vision;
+package view;
 
 import controller.CardCon;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ import model.Card;
  *
  * @author rcvb8
  */
-public class CLI_Rylee {
+public class CLI_card {
     
     Scanner sc = new Scanner(System.in);
     CardCon cardC;
@@ -21,12 +21,12 @@ public class CLI_Rylee {
  
 public static void main(String[] args) {
 
-         new CLI_Rylee();
+         new CLI_card();
         
         
     }
     
-    public CLI_Rylee() {
+    public CLI_card() {
         this.cardC = new CardCon(this);
         
         getCustomerCard();
