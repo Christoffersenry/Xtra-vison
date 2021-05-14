@@ -63,7 +63,10 @@ public class Movie {
         return discCode;
     }
 
-    
+    public int getMovieNum() {
+        movieNum = mCon.getMovieNum();
+        return movieNum;
+    }
 
     
     
