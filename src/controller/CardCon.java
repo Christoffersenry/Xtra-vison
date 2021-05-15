@@ -20,19 +20,20 @@ import view.CLI_card;
  * @author rcvb8
  */
 public class CardCon {
+
     CLI_card cli;
     Card c;
-    
+
     private Random rand = new Random();
     public boolean boolV = false;
     public boolean boolNC = false;
     private String hashCardNum;
-    
-    public CardCon(CLI_card cli) {
+
+    public CardCon(CLI_card cli) {                  // Constructor to create Card Controller instance from CLI_Card instance
         this.cli = cli;
         this.c = new Card(this);
     }
-    
+
     //  THIS CODE WAS GIVEN BY AMILCAR APONTE IN YEAR 2 - GUI PROGRAMMING HASHING CLASS 
     public String hashCardNum(String custCard) {                            // Hashes and Salts card numbers for security and privacy
         // ctr + shift + f
@@ -42,7 +43,7 @@ public class CardCon {
             MessageDigest md = MessageDigest.getInstance("MD5");        // MD5 hashing
             md.update(cardNum.getBytes());
             byte[] digest = md.digest();
-            
+
             BigInteger no = new BigInteger(1, digest);                              // Convert byte array into signum representation                        
 
             hashCardNum = no.toString(16);                                          // Convert message digest into readable hex value
@@ -54,7 +55,7 @@ public class CardCon {
     }
 
     public boolean validateCard(String custCard) {                       // Validate input matches prefixed card length and only contains numbers and is already in DB. 
-        if (isNum(custCard) && custCard.length() == 16 && !c.getDBNewCustCheck(hashCardNum(custCard))) {                                 
+        if (isNum(custCard) && custCard.length() == 16 && !c.getDBNewCustCheck(hashCardNum(custCard))) {
 //            System.out.println("Card validated.");   
             boolV = true;
         } else {
@@ -68,7 +69,6 @@ public class CardCon {
         return Pattern.matches("[0-9]+", num);
     }
 
-
     public boolean isNewCustomer(String custCard) {                 // For test purposes - if no card details are entered = new customer
         if (custCard.isEmpty() || custCard.equals("")) {
             boolNC = true;
@@ -76,7 +76,6 @@ public class CardCon {
         return boolNC;
     }
 
- 
 // THIS CODE WAS ADAPTED FROM JOSEF GALEA ON GITHUB.COM -- HREF: https://gist.github.com/josefeg/5781824
 // RESEARCH WAS ALSO GATHERED FROM HREF: Href = https://gizmodo.com/how-credit-card-numbers-work-1493331190#:~:text=In%20a%20typical%20sixteen%20digit,last%20digit%2C%20it%20is%20deterministic
     public String newCustCardGen() {
@@ -86,10 +85,8 @@ public class CardCon {
 
         int randNumLength = length - (bankFormat.length() + 1); // represents how many digits in the credit card need to be randomly generated besides the initial bankFormat & ending check digit
 
-        
-        
         StringBuilder builder = new StringBuilder(bankFormat);
-        
+
         for (int i = 0; i < randNumLength; i++) {                                    // Loop to create a random digit between 0-9 for all needed random digits in our card number
             int digit = this.rand.nextInt(10);
             builder.append(digit);                                                           // Adds each random digit generated onto the end of the bankFormat
@@ -121,8 +118,8 @@ public class CardCon {
 
         int mod = sum % 10;                                                             // Get remainder
         int diff = 10 - mod;                                                                // Get the difference it would take to make this number a value of 10 or the sum a multiplier of 10
-        
+
         return diff;                                                                            // The diff is your check digit
-        }
-    
+    }
+
 }

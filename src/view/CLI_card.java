@@ -7,54 +7,44 @@ package view;
 
 import controller.CardCon;
 import java.util.Scanner;
-import model.Card;
 
 /**
  *
  * @author rcvb8
  */
 public class CLI_card {
-    
+
     Scanner sc = new Scanner(System.in);
     CardCon cardC;
     public String custCard;
- 
-public static void main(String[] args) {
 
-         new CLI_card();
-        
-        
-    }
-    
-    public CLI_card() {
+    public CLI_card() {                                     // Constructor to create instance of CLI_Card class as well as new instance of a Card Controller
         this.cardC = new CardCon(this);
-        
+
         getCustomerCard();
-        
+
     }
-    
-    
-    public String getCustomerCard() {
+
+    public String getCustomerCard() {                                       // Method to get customers card either from input or generator and validate it
         System.out.println("Please insert your card.");
         System.out.println("*For Test Purpose - Press ENTER for new customer to generate a new card or type in existing card.");
-       boolean validCard = false;
+        boolean validCard = false;
         do {
             try {
-            custCard = sc.nextLine();                                   // Capture user input
+                custCard = sc.nextLine();                                   // Capture user input
                 if (cardC.isNewCustomer(custCard)) {                    // Check to see if is a new customer
-                   custCard = cardC.newCustCardGen();                 // If it is, generate a new card to be used (pretend they already had this) and insert into DB for record
-                   validCard = true;                                        // newly generated card is automatically valid
+                    custCard = cardC.newCustCardGen();                 // If it is, generate a new card to be used (pretend they already had this) and insert into DB for record
+                    validCard = true;                                        // newly generated card is automatically valid
                 } else {
-                validCard = cardC.validateCard(custCard);               // validate user's input to make sure it was a proper card number and that it matches with existing one in DB.
+                    validCard = cardC.validateCard(custCard);               // validate user's input to make sure it was a proper card number and that it matches with existing one in DB.
                 }
-                
+
             } catch (Exception e) {                                         // Catch any errors that might occur and print message
-                System.out.println(e);   
+                System.out.println(e);
             }
-       } while (!validCard);                                                // Loop to get user input until card input is valid
+        } while (!validCard);                                                // Loop to get user input until card input is valid
         System.out.println("Approved!");
         return custCard;
     }
 
-    
 }

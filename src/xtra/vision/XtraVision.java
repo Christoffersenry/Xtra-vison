@@ -5,9 +5,8 @@
  */
 package xtra.vision;
 
-import view.CLI_movie;
-
-
+import controller.IndexCon;
+import view.CLI_card;
 
 /**
  *
@@ -19,10 +18,10 @@ public class XtraVision {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
-        new CLI_movie();
-        
-        
+
+//        new IndexCon();
+        new CLI_card();                                        // For card testing purposes
+
     }
-    
+
 }

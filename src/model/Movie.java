@@ -6,55 +6,41 @@
 package model;
 
 import controller.MovieCon;
-import database.DBConnection;
-import java.util.ArrayList;
-import view.CLI_movie;
 
 /**
  *
  * @author Andressa Gomes
  */
 public class Movie {
+
     private String discCode;
     private int movieNum;
     private String title;
-    
+
 //    protected int quantities;
 //    protected boolean availability;    
-    
     MovieCon mCon;
-    
-    public Movie(MovieCon mCon){
+
+    public Movie(MovieCon mCon) {
         this.mCon = mCon;
     }
 
     @Override
-    public String toString() {
+    public String toString() {                                      // Method to print out movies in cart
         return "Title: " + title + "\n"
-                + "Disc Code: " +discCode + "\n";
+                + "Disc Code: " + discCode + "\n";
     }
 
-    public void setMovieNum(int movieNum) {
+    public void setMovieNum(int movieNum) {         // Method to set the movie number of movie object before adding to cart
         this.movieNum = movieNum;
     }
 
-    public void setDiscCode(String discCode) {
+    public void setDiscCode(String discCode) {          // Method to set the disc code of movie object before adding to cart
         this.discCode = discCode;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title) {                        // Method to set the title of movie object before adding to cart
         this.title = title;
     }
-    
-    
-    
-    
-    
-    
-    
 
-    
-    
-    
-    
 }
