@@ -19,8 +19,8 @@ public class XtraVision {
      */
     public static void main(String[] args) {
 
-//        new IndexCon();
-        new CLI_card();                                        // For card testing purposes
+        new IndexCon();
+//        new CLI_card();                                        // For card testing purposes
 
     }
 
