@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Andressa Gomes
  */
 public class Rental {
+
     protected int cardNum;
     protected int discCode;
     protected int rentalDate;
@@ -23,14 +24,13 @@ public class Rental {
     protected boolean boolVDC = false;
     protected boolean boolL = false;
     protected boolean boolVP = false;
-    
+
     protected String userPromo;                       //Maybe not the right place, but we will see
-    
-   ArrayList<Movie> movies;                          // I don't think this is necessary in here, but we will see
-    
-    
-    public Rental(){
-        
+
+    ArrayList<Movie> movies;                          // I don't think this is necessary in here, but we will see
+
+    public Rental() {
+
     }
 
     public int getDiscCode() {
@@ -52,33 +52,33 @@ public class Rental {
     public double getTotalCharge() {
         return totalCharge;
     }
-    
+
     public String getUserPromo() {          // Maybe not needed here, but we will see
         return userPromo;
     }
-    
+
     public boolean validateDiscCode() {
         return boolVDC;
     }
-    
+
     public boolean isLate() {
         return boolL;
     }
-    
+
     public boolean validatePromo() {
         return boolVP;
     }
-    
+
     public void calcAddCharges() {
-        
+
     }
-    
+
     public void chargeMax() {
-        
+
     }
-    
+
     public void applyPromo() {
-        
+
     }
-    
+
 }

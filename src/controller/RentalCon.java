@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package controller;
 
 /**
  *
  * @author rcvb8
  */
-public enum Genres {
+public class RentalCon {
     
 }

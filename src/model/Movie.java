@@ -5,50 +5,42 @@
  */
 package model;
 
-import database.DBConnection;
-import xtra.vision.CLI_Dessa;
+import controller.MovieCon;
 
 /**
  *
  * @author Andressa Gomes
  */
 public class Movie {
-    protected int discCode;
-    protected String title;
-    protected String description;
-    protected int runTime;
-    protected int rating;
-    protected String genre;
-    protected int quantities;
-    protected boolean availability;
-    
-    
-    CLI_Dessa cli;
-    DBConnection db;
-    
-    public Movie(CLI_Dessa cli){
-        this.cli = cli;
-        this.db = new DBConnection(this);
+
+    private String discCode;
+    private int movieNum;
+    private String title;
+
+//    protected int quantities;
+//    protected boolean availability;    
+    MovieCon mCon;
+
+    public Movie(MovieCon mCon) {
+        this.mCon = mCon;
     }
 
-    public int getQuantities() {
-        return quantities;
+    @Override
+    public String toString() {                                      // Method to print out movies in cart
+        return "Title: " + title + "\n"
+                + "Disc Code: " + discCode + "\n";
     }
 
-    public boolean isAvailability() {
-        return availability;
+    public void setMovieNum(int movieNum) {         // Method to set the movie number of movie object before adding to cart
+        this.movieNum = movieNum;
     }
-    
-    public void showAvailableMovies() {
-        db.getMovieSelection();
+
+    public void setDiscCode(String discCode) {          // Method to set the disc code of movie object before adding to cart
+        this.discCode = discCode;
     }
-    
-    public void showMovieInfo(int movieNum){
-        db.getMovieInfo(movieNum);
+
+    public void setTitle(String title) {                        // Method to set the title of movie object before adding to cart
+        this.title = title;
     }
-    
-    public void addToCart(int movieNum) {
-        
-    }
-    
+
 }

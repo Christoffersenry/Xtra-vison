@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/xtra/vision/CLI_Dessa.java</file>
-            <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/xtra/vision/CLI_Rylee.java</file>
-            <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/model/Card.java</file>
+            <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/view/CLI_index.java</file>
+            <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/view/CLI_cart.java</file>
+            <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/controller/MovieCon.java</file>
+            <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/xtra/vision/XtraVision.java</file>
+            <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/view/CLI_movie.java</file>
+            <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/controller/IndexCon.java</file>
             <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/model/Cart.java</file>
             <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/database/DBConnection.java</file>
+            <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/controller/CartCon.java</file>
             <file>file:/C:/Users/rcvb8/Documents/CCT/Year_2/Semester_2/Object_Oriented_Constructs/CA1/Xtra-vision/src/model/Movie.java</file>
         </group>
     </open-files>
